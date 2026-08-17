@@ -27,6 +27,9 @@ func TheoryMM1(lambda, mu float64) (Theory, error) {
 	if lambda <= 0 || mu <= 0 {
 		return Theory{}, errors.New("theory: lambda and mu must be > 0")
 	}
+	if lambda >= mu {
+		return Theory{}, errors.New("theory: unstable, requires lambda < mu")
+	}
 	rho := lambda / mu
 	return Theory{
 		Rho: rho,
